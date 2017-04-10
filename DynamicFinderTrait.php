@@ -18,7 +18,7 @@ trait DynamicFinderTrait
     }
 
     /**
-    * This method return model by findBy* or findByAll* calls
+    * This method return model by findBy<field> or find<select>By<field> calls
     * @param string $name. The name of called findBy* method.
     * @param array $params. The arguments passed to the findBy* method.
     */
