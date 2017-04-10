@@ -42,11 +42,11 @@ your code...
 $model = Customer::findOneByEmail($email);  // return Customer::findOne('email' => $email);
 $model = Customer::findOneByEmail($email, 'STATUS_ACTIVE');  // return Customer::findOne('email' => $email, 'STATUS_ACTIVE' => 1);
 $model = Customer::findAllByEmail($email);  // return Customer::findAll('email' => $email);
-$model = Customer::findCountByEmail($email);  // return Customer::findAll('email' => $email)->count();
-$model = Customer::findUsernameByEmail($email); // return Customer::find()->select('username')->andWhere('email' => $email)->first();
-$model = Customer::findUpdatedAtByEmail($email); // return Customer::find()->select('updated_at')->andWhere('email' => $email)->first();
+$model = Customer::findCountByEmail($email);  // return count where email=$email;
+$model = Customer::findUsernameByEmail($email); // return username value where email=$email;
+$model = Customer::findUpdatedAtByEmail($email); // return updated_at value where email=$email;
 
-$model = Customer::findByEmail($email) eq $model = Customer::findAllByEmail($email);
+$model = Customer::findByEmail($email) eq Customer::findAllByEmail($email);
 
 ```
 
