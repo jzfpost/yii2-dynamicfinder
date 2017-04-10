@@ -55,7 +55,7 @@ trait DynamicFinderTrait
         } elseif ($select == 'count') {
             return $modelName::find()->andWhere($conditions)->count();
         } elseif(array_key_exists($select, $attributes)) {
-            return $modelName::find()->select($select)->andWhere($conditions)->all();
+            return $modelName::find()->select($select)->andWhere($conditions)->one()->$select;
         } else {
             throw new UnknownPropertyException('Calling unknown Property: ' . $modelName . "::$select");
         }
