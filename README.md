@@ -40,7 +40,7 @@ your code...
 
 ```php
 $model = Customer::findOneByEmail($email);  // return Customer::findOne('email' => $email);
-$model = Customer::findOneByEmail($email, STATUS_ACTIVE);  // return Customer::findOne('email' => $email, 'STATUS_ACTIVE' => 1);
+$model = Customer::findOneByEmail($email, 'STATUS_ACTIVE');  // return Customer::findOne('email' => $email, 'STATUS_ACTIVE' => 1);
 $model = Customer::findAllByEmail($email);  // return Customer::findAll('email' => $email);
 $model = Customer::findCountByEmail($email);  // return Customer::findAll('email' => $email)->count();
 $model = Customer::findUsernameByEmail($email); // return Customer::find()->select('username')->andWhere('email' => $email)->first();
