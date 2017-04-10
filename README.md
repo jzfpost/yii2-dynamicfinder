@@ -30,8 +30,6 @@ class Customer extends \yii\db\ActiveRecord
 {
     use DynamicFinderTrait;
     
-    const STATUS_INACTIVE = 0;
-    const STATUS_ACTIVE = 1;
 your code...
 }
 ```
@@ -40,7 +38,6 @@ your code...
 
 ```php
 $model = Customer::findOneByEmail($email);  // return Customer::findOne('email' => $email);
-$model = Customer::findOneByEmail($email, 'STATUS_ACTIVE');  // return Customer::findOne('email' => $email, 'STATUS_ACTIVE' => 1);
 $model = Customer::findAllByEmail($email);  // return Customer::findAll('email' => $email);
 $model = Customer::findCountByEmail($email);  // return count where email=$email;
 $model = Customer::findUsernameByEmail($email); // return username value where email=$email;
@@ -52,7 +49,7 @@ $model = Customer::findByEmail($email) eq Customer::findAllByEmail($email);
 
 ### syntax
 ```php
-find<Select>By<Field>(field_value, [class_constant])
+find<Select>By<Field>(field_value)
 ```
 where:
 >'Select' may by 'All', 'One', 'Count' or select condition. If 'Select' not set, by default return 'All'.
