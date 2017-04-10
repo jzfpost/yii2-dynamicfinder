@@ -44,10 +44,7 @@ trait DynamicFinderTrait
             throw new UnknownPropertyException('Calling unknown Property: ' . $modelName . "::$field");
         }
         $conditions[$field] = $params[0];
-        if (isset($params[1])) {
-            $conditions[$params[1]] = constant('self::'.$params[1]);
-        }
-
+        
         if ($select == 'all') {
             return $modelName::findAll($conditions);
         } elseif ($select == 'one') {
