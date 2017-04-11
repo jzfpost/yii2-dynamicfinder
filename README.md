@@ -26,9 +26,11 @@ Usage
 ### Model
 
 ```php
+use jzfpost\dynamicfinder\DynamicFinderTrait;
+
 class Customer extends \yii\db\ActiveRecord
 {
-    use jzfpost\dynamicfinder\DynamicFinderTrait;
+    use DynamicFinderTrait;
     
 your code...
 }
