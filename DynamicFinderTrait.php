@@ -1,5 +1,5 @@
 <?php
-namespace jzfpost\dynamicFinder;
+namespace jzfpost\dynamicfinder;
 
 use yii\helpers\Inflector;
 
