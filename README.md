@@ -56,6 +56,6 @@ find<Select>By<Field1>And<Field2>(field_value1, field_value2)
 find<Select>By<Field1>Or<Field2>(field_value1, field_value2)
 ```
 where:
->'Select' may by 'All', 'One', 'Count' or select condition. If 'Select' not set, by default return 'All'.
+>'Select' may by 'All', 'One', 'Count' or one of model attribute. If 'Select' not set, by default return 'All'.
 
 >'Field' is model attribute on where condition.
