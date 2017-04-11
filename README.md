@@ -41,7 +41,7 @@ $model = Customer::findOneByEmail($email);  // return Customer::find()->where('e
 $customers = Customer::findAllByEmail($email);  // return Customer::find()->where('email' => $email)->all();
 $count = Customer::findCountByEmail($email);  // return Customer::find()->where('email' => $email)->count();
 
-$Username = Customer::findUsernameByEmail($email); // return username value where email=$email;
+$username = Customer::findUsernameByEmail($email); // return username value where email=$email;
 $updatedAt = Customer::findUpdatedAtByEmailOrUsername($email, $username); // return updated_at value where email=$email or username = $username;
 $createdAt = Customer::findCreatedAtByEmailAndUsername($email, $username); // return created_at value where email=$email and username = $username;
 
