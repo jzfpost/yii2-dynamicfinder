@@ -38,14 +38,14 @@ your code...
 
 ```php
 $model = Customer::findOneByEmail($email);  // return Customer::find()->where('email' => $email)->one();
-$model = Customer::findAllByEmail($email);  // return Customer::find()->where('email' => $email)->all();
-$model = Customer::findCountByEmail($email);  // return Customer::find()->where('email' => $email)->count();
+$customers = Customer::findAllByEmail($email);  // return Customer::find()->where('email' => $email)->all();
+$count = Customer::findCountByEmail($email);  // return Customer::find()->where('email' => $email)->count();
 
-$model = Customer::findUsernameByEmail($email); // return username value where email=$email;
-$model = Customer::findUpdatedAtByEmailOrUsername($email, $username); // return updated_at value where email=$email or username = $username;
-$model = Customer::findCreatedAtByEmailAndUsername($email, $username); // return created_at value where email=$email and username = $username;
+$Username = Customer::findUsernameByEmail($email); // return username value where email=$email;
+$updatedAt = Customer::findUpdatedAtByEmailOrUsername($email, $username); // return updated_at value where email=$email or username = $username;
+$createdAt = Customer::findCreatedAtByEmailAndUsername($email, $username); // return created_at value where email=$email and username = $username;
 
-$model = Customer::findByEmail($email) equivalently Customer::findAllByEmail($email);
+$customers = Customer::findByEmail($email) equivalently Customer::findAllByEmail($email);
 
 ```
 
