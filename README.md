@@ -23,7 +23,7 @@ to the require section of your `composer.json` file.
 Usage
 -----
 
-### The Model
+### Model
 
 ```php
 class Customer extends \yii\db\ActiveRecord
@@ -34,7 +34,7 @@ your code...
 }
 ```
 
-### The Controller
+### Controller
 
 ```php
 $model = Customer::findOneByEmail($email);  // return Customer::find()->where('email' => $email)->one();
@@ -49,7 +49,7 @@ $customers = Customer::findByEmail($email) equivalently Customer::findAllByEmail
 
 ```
 
-### syntax
+### Syntax
 ```
 findBy<Field>(field_value)
 find<Select>By<Field>(field_value)
