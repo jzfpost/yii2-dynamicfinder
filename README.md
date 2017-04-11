@@ -28,7 +28,7 @@ Usage
 ```php
 class Customer extends \yii\db\ActiveRecord
 {
-    use DynamicFinderTrait;
+    use jzfpost\dynamicfinder\DynamicFinderTrait;
     
 your code...
 }
