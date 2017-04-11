@@ -51,10 +51,9 @@ $customers = Customer::findByEmail($email) equivalently Customer::findAllByEmail
 
 ### syntax
 ```
+findBy<Field>(field_value)
 find<Select>By<Field>(field_value)
-
 find<Select>By<Field1>And<Field2>(field_value1, field_value2)
-
 find<Select>By<Field1>Or<Field2>(field_value1, field_value2)
 ```
 
