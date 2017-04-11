@@ -2,8 +2,6 @@
 namespace jzfpost\dynamicFinder;
 
 use yii\helpers\Inflector;
-use yii\base\UnknownMethodException;
-use yii\base\UnknownPropertyException;
 
 trait DynamicFinderTrait
 {
@@ -36,14 +34,20 @@ trait DynamicFinderTrait
         } elseif (preg_match('/^find_([\w]+)_by_([\w]+)/', $name, $match)) {
             $select = $match[1];
             $fields = $match[2];
-        } else {
-            throw new UnknownMethodException('Calling unknown method: ' . $modelName . "::$name()");
         }
 
         if (preg_match('/^([\w]+)_and_([\w]+)/', $fields, $match)) {
-            $conditions = ['and', [$match[1] => $params[0]], [$match[2] => $params[1]]];
+            $conditions = [
+                'and',
+                [$match[1] => $params[0]],
+                [$match[2] => $params[1]]
+            ];
         } elseif (preg_match('/^([\w]+)_or_([\w]+)/', $fields, $match)) {
-            $conditions = ['or', [$match[1] => $params[0]], [$match[2] => $params[1]]];
+            $conditions = [
+                'or',
+                [$match[1] => $params[0]],
+                [$match[2] => $params[1]]
+            ];
         } else {
             $conditions[$fields] = $params[0];
         }
