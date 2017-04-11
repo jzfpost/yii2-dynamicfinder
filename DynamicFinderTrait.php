@@ -28,7 +28,7 @@ trait DynamicFinderTrait
         $model = new $modelName;
         $attributes = $model->getAttributes();
 
-        $name = Inflector::underscore($name); //findAuthorByBook => find_author_by_book
+        $name = Inflector::underscore($name);
 
         if (preg_match('/^find_by_([\w]+)/', $name, $match)) {
             $select = 'all';
@@ -53,6 +53,5 @@ trait DynamicFinderTrait
         } else {
             return $modelName::find()->where($conditions)->$select();
         }
-
     }
 }
