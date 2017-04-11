@@ -50,11 +50,11 @@ $customers = Customer::findByEmail($email) equivalently Customer::findAllByEmail
 ```
 
 ### syntax
-```php
-find<Select>By<Field>(field_value)
-find<Select>By<Field1>And<Field2>(field_value1, field_value2)
-find<Select>By<Field1>Or<Field2>(field_value1, field_value2)
-```
+
+* find<Select>By<Field>(field_value)
+* find<Select>By<Field1>And<Field2>(field_value1, field_value2)
+* find<Select>By<Field1>Or<Field2>(field_value1, field_value2)
+
 where:
 >'Select' may by 'All', 'One', 'Count' or one of model attribute. If 'Select' not set, by default return 'All'.
 
