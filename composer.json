@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "jzfpost\\yii2-dynamicfinder\\": ""
+            "jzfpost\\dynamicfinder\\": ""
         }
     }
 }
