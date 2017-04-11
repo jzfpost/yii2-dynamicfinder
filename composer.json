@@ -1,0 +1,25 @@
+{
+    "name": "jzfpost/yii2-dynamicfinder",
+    "description": "Dynamic finder trait for Yii2-framework",
+    "keywords": ["yii2"],
+    "type": "yii2-extension",
+    "license": "Unlicense",
+    "support": {
+        "issues": "https://github.com/jzfpost/yii2-dynamicfinder/issues",
+        "source": "https://github.com/jzfpost/yii2-dynamicfinder"
+    },
+    "authors": [
+        {
+            "name": "jzfpost",
+            "email": "jzf@mail.ru"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": ">=2.0.4",
+    },
+    "autoload": {
+        "psr-4": {
+            "jzfpost\\yii2-dynamicfinder\\": ""
+        }
+    }
+}
