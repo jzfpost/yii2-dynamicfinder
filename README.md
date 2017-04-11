@@ -9,13 +9,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist jzfpost/yii2-dynamicfinder "*"
+php composer.phar require --prefer-dist jzfpost/yii2-dynamicfinder "@dev"
 ```
 
 or add
 
 ```
-"jzfpost/yii2-dynamicfinder": "*"
+"jzfpost/yii2-dynamicfinder": "@dev"
 ```
 
 to the require section of your `composer.json` file.
