@@ -32,29 +32,27 @@ trait DynamicFinderTrait
 
         if (preg_match('/^find_by_([\w]+)/', $name, $match)) {
             $select = 'all';
-            $field = $match[1];
+            $fields = $match[1];
         } elseif (preg_match('/^find_([\w]+)_by_([\w]+)/', $name, $match)) {
             $select = $match[1];
-            $field = $match[2];
+            $fields = $match[2];
         } else {
             throw new UnknownMethodException('Calling unknown method: ' . $modelName . "::$name()");
         }
 
-        if (!array_key_exists($field, $attributes)) {
-            throw new UnknownPropertyException('Calling unknown Property: ' . $modelName . "::$field");
-        }
-        $conditions[$field] = $params[0];
-        
-        if ($select == 'all') {
-            return $modelName::findAll($conditions);
-        } elseif ($select == 'one') {
-            return $modelName::findOne($conditions);
-        } elseif ($select == 'count') {
-            return $modelName::find()->andWhere($conditions)->count();
-        } elseif(array_key_exists($select, $attributes)) {
-            return $modelName::find()->select($select)->andWhere($conditions)->one()->$select;
+        if (preg_match('/^([\w]+)_and_([\w]+)/', $fields, $match)) {
+            $conditions = ['and', [$match[1] => $params[0]], [$match[2] => $params[1]]];
+        } elseif (preg_match('/^([\w]+)_or_([\w]+)/', $fields, $match)) {
+            $conditions = ['or', [$match[1] => $params[0]], [$match[2] => $params[1]]];
         } else {
-            throw new UnknownPropertyException('Calling unknown Property: ' . $modelName . "::$select");
+            $conditions[$fields] = $params[0];
         }
+
+        if(array_key_exists($select, $attributes)) {
+            return $modelName::find()->select($select)->where($conditions)->one()->$select;
+        } else {
+            return $modelName::find()->where($conditions)->$select();
+        }
+
     }
 }
