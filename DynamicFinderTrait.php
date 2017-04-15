@@ -2,6 +2,7 @@
 namespace jzfpost\dynamicfinder;
 
 use yii\helpers\Inflector;
+use yii\web\NotFoundHttpException;
 
 trait DynamicFinderTrait
 {
