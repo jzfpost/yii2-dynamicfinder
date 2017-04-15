@@ -40,17 +40,17 @@ trait DynamicFinderTrait
         if (preg_match('/^([\w]+)_and_([\w]+)/', $fields, $match)) {
             $conditions = [
                 'and',
-                [$match[1] => $params[0]],
-                [$match[2] => $params[1]]
+                is_array($params[0]) ? $params[0] : [$match[1] => $params[0]],
+                is_array($params[1]) ? $params[1] : [$match[2] => $params[1]]
             ];
         } elseif (preg_match('/^([\w]+)_or_([\w]+)/', $fields, $match)) {
             $conditions = [
                 'or',
-                [$match[1] => $params[0]],
-                [$match[2] => $params[1]]
+                is_array($params[0]) ? $params[0] : [$match[1] => $params[0]],
+                is_array($params[1]) ? $params[1] : [$match[2] => $params[1]]
             ];
         } else {
-            $conditions = [$fields => $params[0]];
+            $conditions = is_array($params[0]) ? $params[0] : [$fields => $params[0]];
         }
 
         if(array_key_exists($select, $attributes)) {
