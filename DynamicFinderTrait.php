@@ -55,7 +55,11 @@ trait DynamicFinderTrait
         if(array_key_exists($select, $attributes)) {
             return $modelName::find()->select($select)->where($conditions)->one()->$select;
         } else {
-            return $modelName::find()->where($conditions)->$select();
+            if (($result = $modelName::find()->where($conditions)->$select()) !== null) {
+                return $result;
+            } else {
+                throw new NotFoundHttpException('The requested page does not exist.');
+            }
         }
     }
 }
