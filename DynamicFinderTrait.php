@@ -2,7 +2,6 @@
 namespace jzfpost\dynamicfinder;
 
 use yii\helpers\Inflector;
-use yii\web\NotFoundHttpException;
 
 trait DynamicFinderTrait
 {
@@ -20,6 +19,7 @@ trait DynamicFinderTrait
     * This method return model by findBy<field> or find<select>By<field> calls
     * @param string $name. The name of called findBy* method.
     * @param array $params. The arguments passed to the findBy* method.
+    * @return ActiveRecord|attribute value|null
     */
     protected function _dynamicFinder($name, $params)
     {
@@ -54,12 +54,16 @@ trait DynamicFinderTrait
         }
 
         if(array_key_exists($select, $attributes)) {
-            return $modelName::find()->select($select)->where($conditions)->one()->$select;
+            if ( ($result = static::find()->select($select)->where($conditions)->one()) !== null ) {
+                return $result->$select;
+            } else {
+                return null;
+            }
         } else {
-            if (($result = $modelName::find()->where($conditions)->$select()) !== null) {
+            if (($result = static::find()->where($conditions)->$select()) !== null) {
                 return $result;
             } else {
-                throw new NotFoundHttpException('The requested page does not exist.');
+                return null;
             }
         }
     }
