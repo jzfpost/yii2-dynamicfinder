@@ -1,5 +1,5 @@
 # yii2-dynamicfinder
-Dynamic finder trait for Yii2-framework
+Dynamic finder trait for Yii2-framework ActiveRecord models
 
 Installation
 ------------
