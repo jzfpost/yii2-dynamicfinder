@@ -23,27 +23,23 @@ trait DynamicFinderTrait
     */
     protected function _dynamicFinder($name, $params)
     {
-        $modelName = static::className();
-        $model = new $modelName;
-        $attributes = $model->getAttributes();
-
         $name = Inflector::underscore($name);
 
-        if (preg_match('/^find_by_([\w]+)/', $name, $match)) {
+        if (preg_match('/^find_by_(\w+)/', $name, $match)) {
             $select = 'all';
             $fields = $match[1];
-        } elseif (preg_match('/^find_([\w]+)_by_([\w]+)/', $name, $match)) {
+        } elseif (preg_match('/^find_(\w+)_by_(\w+)/', $name, $match)) {
             $select = $match[1];
             $fields = $match[2];
         }
 
-        if (preg_match('/^([\w]+)_and_([\w]+)/', $fields, $match)) {
+        if (preg_match('/^(\w+)_and_(\w+)/', $fields, $match)) {
             $conditions = [
                 'and',
                 is_array($params[0]) ? $params[0] : [$match[1] => $params[0]],
                 is_array($params[1]) ? $params[1] : [$match[2] => $params[1]]
             ];
-        } elseif (preg_match('/^([\w]+)_or_([\w]+)/', $fields, $match)) {
+        } elseif (preg_match('/^(\w+)_or_(\w+)/', $fields, $match)) {
             $conditions = [
                 'or',
                 is_array($params[0]) ? $params[0] : [$match[1] => $params[0]],
@@ -53,13 +49,14 @@ trait DynamicFinderTrait
             $conditions = is_array($params[0]) ? $params[0] : [$fields => $params[0]];
         }
 
+        $attributes = (new self)->getAttributes();
         if(array_key_exists($select, $attributes)) {
-            if ( ($result = static::find()->select($select)->where($conditions)->one()) !== null ) {
+            if ( ($result = static::find()->select($select)->where($conditions)->limit(1)->one()) !== null ) {
                 return $result->$select;
             }
-            return null;
         } else {
             return static::find()->where($conditions)->$select();
         }
+        return null;
     }
 }
