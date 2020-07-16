@@ -39,9 +39,9 @@ your code...
 ### Controller
 
 ```php
-$model = Customer::findOneByEmail($email);  // return Customer::find()->where('email' => $email)->one();
-$customers = Customer::findAllByEmail($email);  // return Customer::find()->where('email' => $email)->all();
-$count = Customer::findCountByEmail($email);  // return Customer::find()->where('email' => $email)->count();
+$model = Customer::findOneByEmail($email);  // return Customer::find()->where(['email' => $email])->one();
+$customers = Customer::findAllByEmail($email);  // return Customer::find()->where(['email' => $email])->all();
+$count = Customer::findCountByEmail($email);  // return Customer::find()->where(['email' => $email])->count();
 
 $username = Customer::findUsernameByEmail($email); // return username value where email=$email;
 $updatedAt = Customer::findUpdatedAtByEmailOrUsername($email, $username); // return updated_at value where email=$email or username = $username;
