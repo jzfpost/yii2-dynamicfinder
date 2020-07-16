@@ -19,7 +19,7 @@ trait DynamicFinderTrait
     * This method return model by findBy<field> or find<select>By<field> calls
     * @param string $name. The name of called findBy* method.
     * @param array $params. The arguments passed to the findBy* method.
-    * @return ActiveRecord|attribute value|null
+    * @return ActiveRecord|mixed|null
     */
     protected function _dynamicFinder($name, $params)
     {
@@ -56,15 +56,10 @@ trait DynamicFinderTrait
         if(array_key_exists($select, $attributes)) {
             if ( ($result = static::find()->select($select)->where($conditions)->one()) !== null ) {
                 return $result->$select;
-            } else {
-                return null;
             }
+            return null;
         } else {
-            if (($result = static::find()->where($conditions)->$select()) !== null) {
-                return $result;
-            } else {
-                return null;
-            }
+            return static::find()->where($conditions)->$select();
         }
     }
 }
