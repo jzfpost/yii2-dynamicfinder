@@ -6,21 +6,21 @@ use yii\helpers\Inflector;
 trait DynamicFinderTrait
 {
     /**
-    * Never call this method.
-    */
+     * Never call this method.
+     */
     public static function __callStatic($name, array $params)
     {
         if (preg_match('/^find(?:\w+)?By/', $name) > 0) {
-            return self::_dynamicFinder($name, $params);
+            return (new self)->_dynamicFinder($name, $params);
         }
     }
 
     /**
-    * This method return model by findBy<field> or find<select>By<field> calls
-    * @param string $name. The name of called findBy* method.
-    * @param array $params. The arguments passed to the findBy* method.
-    * @return ActiveRecord|mixed|null
-    */
+     * This method return model by findBy<field> or find<select>By<field> calls
+     * @param string $name . The name of called findBy* method.
+     * @param array $params . The arguments passed to the findBy* method.
+     * @return ActiveRecord|mixed|null
+     */
     protected function _dynamicFinder($name, $params)
     {
         $name = Inflector::underscore($name);
@@ -50,8 +50,8 @@ trait DynamicFinderTrait
         }
 
         $attributes = (new self)->getAttributes();
-        if(array_key_exists($select, $attributes)) {
-            if ( ($result = static::find()->select($select)->where($conditions)->limit(1)->one()) !== null ) {
+        if (array_key_exists($select, $attributes)) {
+            if (($result = static::find()->select($select)->where($conditions)->limit(1)->one()) !== null) {
                 return $result->$select;
             }
         } else {
